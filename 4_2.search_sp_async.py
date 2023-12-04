@@ -12,7 +12,7 @@ async def lets_search(i):
         artist = j['artists'][0]['name']
         album = j['album']['name']
         id = j['id']
-        found.append([i[0], i[1], name, artist, album, id])
+        found.append([i[0], i[1], i[2].replace(' - EP', '').replace(' - Single', '') ,name, artist, album, id])
     print(f"Searched {i[0]} by {i[1]}")
     
     

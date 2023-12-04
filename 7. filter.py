@@ -4,53 +4,32 @@ import pickle
 def main():
     count = 0 
     ids = []
-    # while(count < len(found)-2):
-        
-    #     is_pass = 0
-    #     if found[count][0] == found[count][3]:
-    #         is_pass += 1
-    #     if found[count][1] == found[count][4]:
-    #         is_pass += 1   
-    #     if found[count][2] == found[count][5]:
-    #         is_pass += 1
-        
-    #     if is_pass >= 2:
-    #         print(found[count][0] + " / " + found[count][1] + " / " + found[count][2] + " | " + found[count][3] + " / " + found[count][4] + " / " + found[count][5])
-    #         ids.append(found[count][6])
-    #     count += 3
-    #     pickle.dump(ids, open('src/ids.p', 'wb'))
-        
-        
+    names = []
+
     for i in found:
         is_pass = 0
-        if i[0] == i[3]:
+        if i[0] in i[3] or i[3] in i[0]:
             is_pass += 1
-        if i[1] == i[4]:
+        if i[1] in i[4] or i[4] in i[1]:
             is_pass += 1   
-        if i[2] == i[5]:
+        if i[2] in i[5] or i[5] in i[2]:
             is_pass += 1
         
         if is_pass >= 2:
-            print(i[0] + " / " + i[1] + " / " + i[2] + " | " + i[3] + " / " + i[4] + " / " + i[5])
-            ids.append(i[6])
+            if len(names) == 0:
+                names.append(i[0])
+                ids.append(i[6])
+                print(i[0] + " / " + i[1] + " / " + i[2] + " | " + i[3] + " / " + i[4] + " / " + i[5])
+            if i[0] != names[-1]:
+                names.append(i[0])
+                ids.append(i[6])
+                print(i[0] + " / " + i[1] + " / " + i[2] + " | " + i[3] + " / " + i[4] + " / " + i[5])
         count += 3
         pickle.dump(ids, open('src/ids.p', 'wb'))
 
-# def main():
-#     temp = []
-#     for i in found:
-#         if len(temp) != 0:
-#             if temp[-1][0] != i[0]:
-#                 temp.append(i)
-#         else:
-#             temp.append(i)
-
-#     print(temp)
-#     json.dump(temp, open('src/only_first.json', 'w'), ensure_ascii=False, indent=4)  
-
 if __name__ == '__main__':
-    # found = json.load(open('src/found.json', 'r'))
-    found = json.load(open('src/only_first.json', 'r'))
+    found = json.load(open('src/found.json', 'r'))
+    # found = json.load(open('src/only_first.json', 'r'))
 
     main()
     

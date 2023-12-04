@@ -22,7 +22,7 @@ def main():
             album = j['album']['name']
             id = j['id']
             results += f"Original is {i[0]} by {i[1]} | Name: {name} | Artist: {artist} | Album: {album} | ID: {id}"
-            found.append([i[0], i[1], name, artist, album, id])
+            found.append([i[0], i[1], i[2].replace(' - EP', '').replace(' - Single', ''), name, artist, album, id])
         count -= 1
         print(f"Searched {i[0]} by {i[1]} - {count} left")
     

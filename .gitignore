@@ -3,3 +3,4 @@ src/*
 .vscode/
 info.json
 info.log
+.cache
